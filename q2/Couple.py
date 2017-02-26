@@ -23,6 +23,9 @@ class Couple:
         self.set_happiness()
         self.compatibility = self.get_compatibility()
 
+    def __str__(self):
+        return str(self.boy.name + ' and ' + self.girl.name)
+
     def allocate_gifts(self, gift_list):
         """
         Allocates gift from given gift lisr
