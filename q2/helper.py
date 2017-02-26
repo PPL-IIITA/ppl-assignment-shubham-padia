@@ -4,6 +4,9 @@ from boy import Boy
 from girl import Girl
 from gift import EssentialGift, LuxuryGift, UtilityGift
 from Couple import Couple
+import logging
+logging.basicConfig(filename='log.txt', filemode='a', format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
+                        datefmt='%H:%M:%S', level=logging.DEBUG)
 
 
 def form_couple(boy, girl):
@@ -16,6 +19,7 @@ def form_couple(boy, girl):
     if girl.budget <= boy.budget and boy.min_attraction <= girl.attractiveness:
         girl.change_commitment()
         boy.change_commitment()
+        logging.info(boy.name + ' comitted with ' + girl.name)
         return True
     return False
 
