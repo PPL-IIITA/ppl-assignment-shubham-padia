@@ -96,3 +96,4 @@ ENV/
 #IDE
 .idea
 log.txt
+couples.csv

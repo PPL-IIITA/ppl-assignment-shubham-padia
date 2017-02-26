@@ -16,6 +16,9 @@ python3 app.py
 ```
 - Each folder has a pdf named `documentation.pdf` with the doocumentation in it
 - Each folder has a class diagram in the form of image with sufficient resolution(please open the photo on your desktop viewr and properly zoom it) named `class_diagram` describing the class diagram
-
+- Boys(~90) and girls(~30) are randomly generated
+- logs are stored in `log.txt`
+- gifts are stored in `data/gifts.csv` for q2
+- Couples formed are stored in `data/couplse.csv`
 - Language: Python 3.5
 - OS: Ubuntu 16.04
