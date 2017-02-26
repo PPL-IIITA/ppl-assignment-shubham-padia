@@ -19,6 +19,6 @@ python3 app.py
 - Boys(~90) and girls(~30) are randomly generated
 - logs are stored in `log.txt`
 - gifts are stored in `data/gifts.csv` for q2
-- Couples formed are stored in `data/couplse.csv`
+- Couples formed are stored in `data/couples.csv`
 - Language: Python 3.5
 - OS: Ubuntu 16.04
