@@ -1,4 +1,7 @@
 import math
+import logging
+logging.basicConfig(filename='log.txt', filemode='a', format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
+                        datefmt='%H:%M:%S', level=logging.DEBUG)
 
 
 class Couple:
@@ -33,12 +36,18 @@ class Couple:
                 self.gifts.append(gift)
                 self.gift_cost += gift.price
                 self.gift_value += gift.value
+                print(self.boy.name + ' gifted ' + self.girl.name + ' with ' + gift.name + 'gift')
+                logging.info(self.boy.name + ' gifted ' + self.girl.name + ' with ' + gift.name + 'gift')
+
             if self.boy.category == 'generous' and self.gift_cost < self.boy.budget:
                 if type(gift).__name__ == 'LuxuryGift':
                     self.luxury_gift_cost += gift.price
                     self.gifts.append(gift)
                 self.gift_cost += gift.price
                 self.gift_value += gift.value
+                print(self.boy.name + ' gifted ' + self.girl.name + ' with ' + gift.name + 'gift')
+                logging.info(self.boy.name + ' gifted ' + self.girl.name + ' with ' + gift.name + 'gift')
+
 
     def set_happiness(self):
         """

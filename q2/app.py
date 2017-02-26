@@ -2,16 +2,14 @@ from helper import form_couple, get_girl_list, get_boy_list, get_gift_list
 from Couple import Couple
 import csv
 import logging
-
+logging.basicConfig(filename='log.txt', filemode='a', format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
+                        datefmt='%H:%M:%S', level=logging.DEBUG)
 
 def main():
     girl_data = get_girl_list()
     boy_data = get_boy_list()
     couple_file = open('./data/couples.csv', 'w+')
     couple_writer = csv.writer(couple_file, delimiter=',')
-
-    logging.basicConfig(filename='log.txt', filemode='a', format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
-                        datefmt='%H:%M:%S', level=logging.DEBUG)
 
     for girl in girl_data:
         for boy in boy_data:

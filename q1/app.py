@@ -12,6 +12,7 @@ def main():
         for boy in boy_data:
             if boy.single == 1:
                 if form_couple(boy, girl):
+                    print(boy.name + ' became comitted with ' + girl.name)
                     couple_writer.writerow([boy.name, girl.name])
                     break
 
