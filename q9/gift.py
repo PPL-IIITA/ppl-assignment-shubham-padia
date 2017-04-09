@@ -1,4 +1,4 @@
-class Gift:
+class EssentialGift:
     def __init__(self, name, price, value):
         """
         :param name: name of gift
@@ -10,12 +10,7 @@ class Gift:
         self.value = int(value)
 
 
-class EssentialGift(Gift):
-    def __init__(self, name, price, value):
-        Gift.__init__(self, name, price, value)
-
-
-class LuxuryGift(Gift):
+class LuxuryGift:
     def __init__(self, name, price, value, difficulty, rating):
         """
         :param name: name of gift
@@ -24,12 +19,14 @@ class LuxuryGift(Gift):
         :param difficulty: difficulty in obtaining the gift
         :param rating: rating of the gift
         """
-        Gift.__init__(self, name, price, value)
+        self.name = name
+        self.value = int(value)
+        self.price = int(price)
         self.difficulty = int(difficulty)
         self.rating = int(rating)
 
 
-class UtilityGift(Gift):
+class UtilityGift:
     def __init__(self, name, price, value, utility_value, utility_class):
         """
         :param name: name of gift
@@ -38,6 +35,8 @@ class UtilityGift(Gift):
         :param utility_value: utility value of gift
         :param utility_class: utlility class of gift
         """
-        Gift.__init__(self, name, price, value)
+        self.name = name
         self.utility_value = int(utility_value)
         self.utility_class = utility_class
+        self.price = int(price)
+        self.value = int(value)

@@ -63,9 +63,9 @@ def get_gift_list(filename):
             if row:
                 if row[0] == 'essential':
                     gift_data.append(EssentialGift(row[1], row[2], row[3]))
-                if row[1] == 'luxury':
+                if row[0] == 'luxury':
                     gift_data.append(LuxuryGift(row[1], row[2], row[3], row[4], row[5]))
-                if row[2] == 'utility':
+                if row[0] == 'utility':
                     gift_data.append(UtilityGift(row[1], row[2], row[3], row[4], row[5]))
     gift_data.sort(key=lambda x: x.price, reverse=True)
     return gift_data

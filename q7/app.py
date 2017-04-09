@@ -41,7 +41,7 @@ def main():
 
     pos = search(committed_boys, search_boy)
     if pos != -1:
-        print('Girlfriend of search query : ' + search_boy + ' by Binary search implementation is ' + committed_girls[pos])
+        print('Girlfriend of search query : ' + search_boy + ' by Binary search implementation is ' + couple_dict.get(search_boy, 'no girlfriend'))
     else:
         print('The boy is single :( ')
 

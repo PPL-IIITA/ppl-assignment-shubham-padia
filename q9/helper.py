@@ -5,8 +5,6 @@ from girl import ChoosyGirl, NormalGirl, DesperateGirl
 from gift import EssentialGift, LuxuryGift, UtilityGift
 from Couple import Couple
 import logging
-from bisect import bisect_left
-
 logging.basicConfig(filename='log.txt', filemode='a', format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
                         datefmt='%H:%M:%S', level=logging.DEBUG)
 
@@ -31,12 +29,14 @@ def get_boy_list():
     Autogenerates a random boy list
     :return:
     """
-    boy_data = [GeekBoy('31geek', random.randint(1, 1000), random.randint(1, 1000), random.randint(1, 1000), random.randint(1, 10000))]
+    boy_data = []
     for i in range(1, 30):
         boy_data.append(MiserBoy(str(i)+'miser', random.randint(1, 1000), random.randint(1, 1000), random.randint(1, 1000), random.randint(1, 10000)))
         boy_data.append(GenerousBoy(str(i)+'generous', random.randint(1, 1000), random.randint(1, 1000), random.randint(1, 1000), random.randint(1, 10000)))
         boy_data.append(GeekBoy(str(i)+'geek', random.randint(1, 1000), random.randint(1, 1000), random.randint(1, 1000), random.randint(1, 10000)))
+    boy_data.sort(key=lambda x: x.intelligence, reverse=True)
     return boy_data
+
 
 
 def get_girl_list():
@@ -49,6 +49,7 @@ def get_girl_list():
         girl_data.append(ChoosyGirl(str(i)+'choosy', random.randint(1, 1000), random.randint(1, 1000), random.randint(1, 10000)))
         girl_data.append(NormalGirl(str(i)+'normal', random.randint(1, 1000), random.randint(1, 1000), random.randint(1, 10000)))
         girl_data.append(DesperateGirl(str(i)+'desperate', random.randint(1, 1000), random.randint(1, 1000), random.randint(1, 10000)))
+    girl_data.sort(key=lambda x: x.budget, reverse=True)
     return girl_data
 
 
@@ -69,21 +70,5 @@ def get_gift_list(filename):
                     gift_data.append(LuxuryGift(row[1], row[2], row[3], row[4], row[5]))
                 if row[0] == 'utility':
                     gift_data.append(UtilityGift(row[1], row[2], row[3], row[4], row[5]))
-    gift_data.sort(key=lambda x: x.price, reverse=True)
+    gift_data.sort(key=lambda x: x.value, reverse=True)
     return gift_data
-
-
-def search(lst, target):
-    min = 0
-    max = len(lst) - 1
-    while True:
-        if max < min:
-            return 1
-        m = (min + max) // 2
-        if lst[m] < target:
-            min = m + 1
-        elif lst[m] > target:
-            max = m - 1
-        else:
-            return 1
-
