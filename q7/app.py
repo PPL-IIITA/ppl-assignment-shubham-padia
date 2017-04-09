@@ -1,4 +1,4 @@
-from helper import form_couple, get_girl_list, get_boy_list, get_gift_list
+from helper import form_couple, get_girl_list, get_boy_list, get_gift_list, search
 from Couple import Couple
 import csv
 import logging
@@ -13,6 +13,9 @@ def main():
     couple_writer = csv.writer(couple_file, delimiter=',')
     couple_list = []
     gift_list = get_gift_list('data/gifts.csv')
+    couple_dict = {}
+    committed_boys = []
+    committed_girls = []
 
     for girl in girl_data:
         for boy in boy_data:
@@ -20,24 +23,29 @@ def main():
                 if form_couple(boy, girl):
                     couple = Couple(boy, girl, gift_list)
                     couple_list.append(couple)
+                    couple_dict[boy.name] = girl.name
+                    committed_boys.append(couple.boy.name)
+                    committed_girls.append(couple.girl.name)
                     logging.info(boy.name + ' and ' + girl.name + ' are a couple.')
                     couple_writer.writerow([boy.name, girl.name, couple.happiness, couple.compatibility])
                     break
 
-    t = int(input("Enter t: \n"))
+    search_boy = '31geek'
+    for boy in committed_boys:
+        print(boy)
 
-    couple_list.sort(key=lambda x: x.happiness)
     for couple in couple_list:
-        if couple.happiness < t:
-            couple.breakup()
-            girl = couple.girl
-            for boy in boy_data:
-                if boy.single == 1 and boy != couple.boy:
-                    form_couple(boy, girl)
-                    couple = Couple(boy, girl, gift_list)
-                    logging.info(boy.name + ' and ' + girl.name + ' are a new couple after breakup.')
-                    print(boy.name + ' and ' + girl.name + ' are a new couple after breakup.')
-                    couple_writer.writerow([boy.name, girl.name, couple.happiness, couple.compatibility])
-                    break
+        if couple.boy.name == search_boy:
+            print('Girlfriend of search query : ' + search_boy + ' by list implementation is ' + couple.girl.name)
+            break
+
+    pos = search(committed_boys, search_boy)
+    if pos != -1:
+        print('Girlfriend of search query : ' + search_boy + ' by Binary search implementation is ' + committed_girls[pos])
+    else:
+        print('The boy is single :( ')
+
+    print('Girlfriend of search query : ' + search_boy + ' by hashtable implementation is ' + couple_dict.get(search_boy, 'no girlfriend'))
+
 
 main()
